@@ -1,10 +1,11 @@
 import sys
-import math
+import itertools
 
 
 def binomial_coefficient(n, k):
-    return math.factorial(n) / (math.factorial(k) * math.factorial(n - k))
+    combinations = list(itertools.combinations(range(n), k))
+    return len(combinations)
 
 
 n, k = map(int, sys.stdin.readline().rstrip().split())
-print(int(binomial_coefficient(n, k)))
+print(binomial_coefficient(n, k))
