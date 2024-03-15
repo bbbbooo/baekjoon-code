@@ -8,4 +8,4 @@ for i in range(l):
     no = ord(s[i]) - 96
     answer += (no * (31 ** i))
 
-print(answer)
+print(answer % 1234567891)
