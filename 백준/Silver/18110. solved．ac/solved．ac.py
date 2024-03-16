@@ -5,9 +5,8 @@ l = []
 wanted = []
 average = 0
 
-
 def myRound(param):
-    if param - int(param) >= 0.5:
+    if param - int(param) >= 0.5: # 
         return int(param)+1
     else :
         return int(param)
