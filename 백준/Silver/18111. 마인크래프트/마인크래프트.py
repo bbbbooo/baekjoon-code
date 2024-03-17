@@ -1,25 +1,27 @@
 import sys
 
-N, M, B = map(int, sys.stdin.readline().split())
-field = [list(map(int, sys.stdin.readline().split())) for _ in range(N)]
+n, m, b = map(int, sys.stdin.readline().rstrip().split())
+field = []
 answer = sys.maxsize
 idx = 0
 
+for i in range(n):
+    q = list(map(int, sys.stdin.readline().rstrip().split()))
+    field.append(q)
+
 for floor in range(257):
-    exceed_block, lack_block = 0, 0
+    over, lack = 0, 0
 
-    for i in range(N):
-        for j in range(M):
+    for i in range(n):
+        for j in range(m):
+            if field[i][j] > floor:
+                over += field[i][j] - floor
+            else:
+                lack += floor - field[i][j]
 
-            if field[i][j] > floor :
-                exceed_block += field[i][j] - floor
-            else : 
-                lack_block += floor - field[i][j]
-
-    if exceed_block + B >= lack_block :
-        if (exceed_block * 2) + lack_block <= answer:
-            answer = (exceed_block * 2) + lack_block
+    if over + b >= lack:
+        if (over * 2) + lack <= answer:
+            answer = (over * 2) + lack
             idx = floor
-
 
 print(answer, idx)
