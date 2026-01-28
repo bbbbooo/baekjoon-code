@@ -1,0 +1,60 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		int[] starts = new int[n];
+		int[] ends = new int[n];
+
+		// List<int[]> mettings = new ArrayList<>();
+		for (int i = 0; i < n; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int start = Integer.parseInt(st.nextToken());
+			int end = Integer.parseInt(st.nextToken());
+			// mettings.add(new int[]{start, end});
+
+			starts[i] = start;
+			ends[i] = end;
+		}
+
+		Arrays.sort(starts);
+		Arrays.sort(ends);
+
+		// mettings.sort((a, b) -> Integer.compare(a[0], b[0]));
+
+		int maxRoom = 0;
+		int currentRoom = 0;
+		int endIdx = 0;
+
+		for (int i = 0; i < n; i++) {
+			if (starts[i] < ends[endIdx]) {
+				currentRoom++;
+			} else {
+				endIdx++;
+			}
+		}
+
+		maxRoom = Math.max(maxRoom, currentRoom);
+		
+		// List<Integer> roomEndTimes = new ArrayList<>();
+		// for (int[] metting: mettings) {
+		// 	boolean foundRoom = false;
+
+		// 	for (int j = 0; j < roomEndTimes.size(); j++) {
+		// 		if (roomEndTimes.get(j) <= metting[0]) {
+		// 			roomEndTimes.set(j, metting[1]);
+		// 			foundRoom = true;
+		// 			break;
+		// 		}
+		// 	}
+
+		// 	if (!foundRoom) {
+		// 		roomEndTimes.add(metting[1]);
+		// 	}
+		// }
+		
+		System.out.println(maxRoom);
+	}
+}
