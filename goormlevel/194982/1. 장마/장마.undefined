@@ -1,0 +1,52 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+
+	// 비오면 땅 길이 +1
+	// 첫번째줄은 집 개수와 장마 기간
+	// 두번째줄은 n번집부터의 땅 길이
+	// 세번째줄은 s번 집부터 e번 집까지 비가왔다는거. 세번째줄부터 첫째날 시작
+	// 3의 배수마다 오늘 포함 이틀 이내 비왔으면 땅 길이 -1
+	// 상태값으로 비가 왔을때 true로 바꾸고, 배수 끝나면 false로 변경
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] jangma = br.readLine().trim().split(" ");
+		int house = Integer.parseInt(jangma[0]);
+		int days = Integer.parseInt(jangma[1]);
+		
+		int[] height = Arrays.stream(br.readLine().split(" "))
+			.mapToInt(Integer::parseInt)
+			.toArray();
+
+		boolean[] system = new boolean[house];
+		for (int i = 1; i <= days; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine().trim());
+			int s = Integer.parseInt(st.nextToken()) - 1;
+			int e = Integer.parseInt(st.nextToken()) - 1;
+			
+			for (int j = s; j <= e; j++) {
+				height[j] += 1;
+				system[j] = true;
+			}
+			
+			if (i % 3 == 0) {
+				for (int k = 0; k < system.length; k++) {
+					if (system[k] == true) {
+						height[k] -= 1;
+						system[k] = false;
+					}
+				}
+			}
+			
+		}
+
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < height.length; i++) {
+			sb.append(height[i]);
+			if (i < height.length - 1) sb.append(" ");
+		}
+
+		System.out.println(sb);
+	}
+}
