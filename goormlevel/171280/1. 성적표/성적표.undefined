@@ -1,0 +1,39 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] input = br.readLine().split(" ");
+
+		int n = Integer.parseInt(input[0]);
+		int m = Integer.parseInt(input[1]);
+
+		long[] sums = new long[m+1]; // 과목합
+		long[] counts = new long[m+1]; // 과목 얼마나 등장했는지
+		
+		for (int i=0; i<n; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			int c = Integer.parseInt(st.nextToken());
+			int s = Integer.parseInt(st.nextToken());
+
+			sums[c] += s;
+			counts[c] += 1;
+		}
+
+		int bestSubject = 1;
+		double maxAvg = -1.0;
+		for (int i = 1; i<=m; i++) {
+			if (counts[i] == 0) continue;
+
+			double currentAvg = (double) sums[i] / counts[i];
+
+			if (currentAvg > maxAvg) {
+				maxAvg = currentAvg;
+				bestSubject = i;
+			}
+		}
+		
+		System.out.println(bestSubject);
+	}
+}
