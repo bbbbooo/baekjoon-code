@@ -1,0 +1,28 @@
+import java.io.*;
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+		String s = br.readLine();
+
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i<n -1; i++) {
+			String pair = s.substring(i, i+2);
+
+			switch (pair) {
+                case "qw": sb.append(1); break;
+                case "as": sb.append(2); break;
+                case "zx": sb.append(3); break;
+                case "we": sb.append(4); break;
+                case "sd": sb.append(5); break;
+                case "xc": sb.append(6); break;
+                case "er": sb.append(7); break;
+                case "df": sb.append(8); break;
+                case "cv": sb.append(9); break;
+                case "ze": sb.append(0); break;
+            }
+		}
+		
+		System.out.println(sb.toString());
+	}
+}
