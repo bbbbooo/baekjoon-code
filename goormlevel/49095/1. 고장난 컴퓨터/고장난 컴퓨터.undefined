@@ -1,0 +1,40 @@
+import java.io.*;
+import java.util.*;
+
+// 첫번째줄 n = 입력 글자수, c = 코드가 안지워지고 유지되는 시간 (c초 지나기 전에 새로 입력하면 갱신됨)
+// 두번째줄은 각 글자 입력 후 경과시간
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] input = br.readLine().split(" ");
+		int n = Integer.parseInt(input[0]);
+		int c = Integer.parseInt(input[1]);
+
+		int[] gl = Arrays.stream(br.readLine().split(" "))
+				.mapToInt(Integer::parseInt)
+				.toArray();
+		int count = 0;
+
+		if (gl.length <= 1) {
+			count = 1;
+		} else {
+			for (int i = 0; i < gl.length; i++) {
+				if (i == gl.length -1) {
+					count++;
+				} else {
+				
+				int cur = gl[i];
+				int next = gl[i+1];
+
+				if (next - cur <= c) {
+					count++;
+				} else {
+					count =0;
+				}
+				}
+			}
+		}
+		
+		System.out.println(count);
+	}
+}
