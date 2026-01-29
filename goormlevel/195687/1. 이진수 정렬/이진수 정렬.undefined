@@ -1,0 +1,31 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+        
+    int n = Integer.parseInt(st.nextToken());
+    int k = Integer.parseInt(st.nextToken());
+
+		int[][] nums = new int[n][2];
+
+		st = new StringTokenizer(br.readLine());
+		for (int i = 0; i < n; i++) {
+			int val = Integer.parseInt(st.nextToken());
+			nums[i][0] = val;
+			nums[i][1] = Integer.bitCount(val);
+		}
+
+		Arrays.sort(nums, (a, b) -> {
+			if (a[1] != b[1]) {
+				return b[1] - a[1];
+			}
+
+			return b[0] - a[0];
+		});
+
+		System.out.println(nums[k-1][0]);
+	}
+}
