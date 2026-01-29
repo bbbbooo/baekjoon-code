@@ -1,0 +1,44 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+
+	// 정렬 시키고 하나씩 비교하면서 차이가 제일 작은거 구하기
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] input = br.readLine().split(" ");
+
+		int n = Integer.parseInt(input[0]);
+		int m = Integer.parseInt(input[1]);
+
+		int[] nArr = Arrays.stream(br.readLine().split(" "))
+			.mapToInt(Integer::parseInt)
+			.toArray();
+		
+		int[] mArr = Arrays.stream(br.readLine().split(" "))
+			.mapToInt(Integer::parseInt)
+			.toArray();
+
+		Arrays.sort(nArr);
+		Arrays.sort(mArr);
+
+		long min = Long.MAX_VALUE;
+
+		int i = 0, j = 0;
+
+		while (i < n && j < m) {
+			long diff = Math.abs((long) nArr[i] - mArr[j]);
+			min = Math.min(min, diff);
+
+			if (nArr[i] < mArr[j]) {
+				i++;
+			} else {
+				j++;
+			}
+		}
+
+		
+		
+		System.out.println(min);
+	}
+}
