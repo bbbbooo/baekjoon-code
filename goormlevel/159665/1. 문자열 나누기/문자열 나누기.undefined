@@ -1,0 +1,25 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+	// 현재 문자와 다음 문자를 비교해서 같으면 다음 반복문으로
+	// 다르면 count +1 처리
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		int n = Integer.parseInt(br.readLine());
+
+		int count = 0;
+		String[] s = br.readLine().split("");
+		String current = "";
+		for (int i = 0; i<n; i++) {
+			if (current.equals(s[i])) {
+				continue;
+			}
+
+			current = s[i];			
+			count++;
+		}
+		
+		System.out.println(count);
+	}
+}
