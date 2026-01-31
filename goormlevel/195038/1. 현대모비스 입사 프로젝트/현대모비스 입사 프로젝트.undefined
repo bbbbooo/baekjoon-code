@@ -1,0 +1,47 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+	// 과목의 총 개수 n, 들을 과목 개수 k 를 입력받음
+	// n+1줄까지 a,b,c 역량 늘어나는 수치를 줌
+	// 두 역량만 늘렸을때의 최대치
+	// 
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st = new StringTokenizer(br.readLine());
+
+		int n = Integer.parseInt(st.nextToken());
+		int k = Integer.parseInt(st.nextToken());
+
+		Long[] sumAB = new Long[n];
+		Long[] sumBC = new Long[n];
+		Long[] sumCA = new Long[n];
+
+		for (int i=0; i<n; i++) {
+			st = new StringTokenizer(br.readLine());
+
+			long a = Integer.parseInt(st.nextToken());
+			long b = Integer.parseInt(st.nextToken());
+			long c = Integer.parseInt(st.nextToken());
+
+			sumAB[i] = a+b;
+			sumBC[i] = b+c;
+			sumCA[i] = c+a;
+		}
+
+		Arrays.sort(sumAB, Collections.reverseOrder());
+		Arrays.sort(sumBC, Collections.reverseOrder());
+		Arrays.sort(sumCA, Collections.reverseOrder());
+
+		long ra = 0;
+		long rb = 0;
+		long rc = 0;
+		for (int i=0; i<k; i++) {
+			ra += sumAB[i];
+			rb += sumBC[i];
+			rc += sumCA[i];
+		}
+		
+		System.out.println(Math.max(ra, Math.max(rb, rc)));
+	}
+}
