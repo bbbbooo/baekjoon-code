@@ -1,0 +1,26 @@
+import java.io.*;
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String[] input = br.readLine().split(" ");
+		int n = Integer.parseInt(input[0]);
+		int m = Integer.parseInt(input[1]);
+
+		int[] arr = new int[n];
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for (int i=0; i<n; i++) {
+			arr[i] = Integer.parseInt(st.nextToken());
+		}
+
+		int cursor = 0;
+		for (int i=0; i<m; i++) {
+			int move = arr[cursor];
+
+			cursor = (cursor + move)%n;
+		}
+		
+		System.out.println(arr[cursor]);
+	}
+}
